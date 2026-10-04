@@ -41,10 +41,10 @@ library(pheatmap)
 # ------------------------------------------------------------
 
 immucellai_file <- 
-  "C:/Users/tahi3002/OneDrive - NIQ/Desktop/New folder/Bioinformatics/for manuscript/Cell deconvolution/ImmuneCellAbundance_sample.xlsx"
+  "Cell deconvolution/ImmuneCellAbundance_sample.xlsx"
 
 metadata_file <- 
-  "C:/Users/tahi3002/OneDrive - NIQ/Desktop/New folder/Bioinformatics/for manuscript/Cell deconvolution/metadata.csv"
+  "Cell deconvolution/metadata.csv"
 
 
 # ------------------------------------------------------------
