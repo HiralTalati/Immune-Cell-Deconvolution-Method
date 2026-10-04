@@ -58,6 +58,73 @@ Upon a successful run, the script outputs several data tables and high-resolutio
 
 • Hub_gene_ImmuneCellAI_Spearman_heatmap.pdf: Vector format version of the annotated heatmap.
 
+• **Biomarker-Immune Cell Scatter Plots**
+
+To validate high-confidence statistical associations, the pipeline includes a dedicated submodule (hub_immune_scatter_validation.R) that automatically extracts significant variables and maps them into bivariate scatter plots.
+
+Key features and specifications of this visualization include:
+
+• LOESS Trendlines: Fits non-parametric Local Regression (LOESS) smoothing lines along with a shaded 95% Confidence Interval (CI) region to accurately model non-linear co-expression relationships.
+
+• Dynamic Statistical Annotation: Automatically calculates and prints vital metrics directly onto the upper-right corner of each plot canvas:
+	
+  • Spearman's Rank Correlation Coefficient (ρ)
+	
+  • Benjamini-Hochberg False Discovery Rate (FDR)
+	
+  • Total paired sample count (N)
+
+• Multi-Panel Composite Figure: Utilizes ggpubr::ggarrange to consolidate six critical biological axes into a unified 2 × 3 scientific grid:
+	
+  • Panel A: ATP6V1E1 expression vs. Basophils abundance
+	
+  • Panel B: COX7A2 expression vs. cDC1 abundance
+	
+  • Panel C: SLIRP expression vs. Mast Cell abundance
+	
+  • Panel D: NDUFB3 expression vs. Neutrophils abundance
+	
+  • Panel E: UQCRH expression vs. GC_B abundance
+	
+  • Panel F: NDUFS5 expression vs. cDC1 abundance
+
+Exported Workspace Figures
+
+The script saves the following publication-ready files directly to the root directory:
+
+• Hub_gene_ImmuneCellAI_scatterplots.png: High-resolution (600 DPI, 12 × 15 inches) raster composite grid.
+
+• Hub_gene_ImmuneCellAI_scatterplots.pdf: Vector-format composite file for lossless scaling.
+
+• Scatter_{Gene}_{Cell_Type}.png: Individual standalone plots (6 × 5 inches) for targeted manuscript placements.
+
+3. **Immune Cell Deconvolution Disease-Stage Profiling**
+
+To track systematic shifts in cellular microenvironments across Alzheimer's disease progression, the pipeline incorporates a disease-stage profiling module (immucellai_disease_stage.R) that models the abundance of 24 immune cell lineages across 1,301 clinical samples.
+
+Key features and statistical specifications of this module include:
+
+• Cohort Harmonization & Recoding: Merges the raw cell fractions matrix with sample clinical metadata, filtering explicitly for the target cohorts, and recodes borderline patient samples into the MCI group to build three robust factor groups (CTL: 487, MCI: 326, AD: 488).
+
+• Non-Parametric Multi-Group Modeling: Performs high-throughput Kruskal-Wallis H-testing across all 24 deconvoluted cell populations to evaluate global fractional distribution variances between the clinical groups.
+
+• Multiple-Testing Correction & Post-Hoc Stratification: Controls false discovery rates using the Benjamini-Hochberg (BH-FDR) method. For cell types meeting the strict significance threshold (\(\text{FDR} < 0.05\)), the script initiates Dunn’s Post-Hoc pairwise test adjusted via BH to isolate specific stage-to-stage transition patterns.
+
+• Exploratory Distribution Plotting: Generates composite cross-cohort violin plots overlaying internal boxplots with custom HEX hex-codes (CTL: #4C78A8, MCI: #F2A541, AD: #D95F59) for the top 6 strongest nominally changing immune cell signatures.
+Exported Deconvolution Outputs
+
+The submodule automatically exports a series of comprehensive tables and grid figures to the repository directory:
+
+• ImmuCellAI_CTL_MCI_AD_Kruskal_Wallis_all_results.xlsx: Excel table mapping H-statistics, raw p-values, sample sizes, and global FDR values for all 24 populations.
+
+• ImmuCellAI_CTL_MCI_AD_Kruskal_Wallis_significant.xlsx: Filtered Excel table restricted to global FDR-significant populations.
+
+• ImmuCellAI_CTL_MCI_AD_Dunn_posthoc_results.xlsx: Pairwise comparison tracking matrix (CTL vs. MCI, MCI vs. AD, CTL vs. AD) for top-tier changing cell lines.
+
+• ImmuCellAI_CTL_MCI_AD_groupwise_summary.xlsx: Summary sheet displaying the calculated Medians, 1st/3rd Quartiles, and Interquartile Ranges (IQR) stratified by disease stage.
+
+• ImmuCellAI_top_nominal_immune_cell_changes.png/.pdf: multi-panel violin/boxplot composite figures.
+
 📄 License
 
 This repository is open-source and distributed under the MIT License.
