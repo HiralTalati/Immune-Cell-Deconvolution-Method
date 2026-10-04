@@ -52,7 +52,7 @@ hub_genes <- c(
 # ============================================================
 
 immucellai <- read.xlsx(
-  "C:/Users/tahi3002/OneDrive - NIQ/Desktop/New folder/Bioinformatics/for manuscript/Cell deconvolution/ImmuneCellAbundance_sample.xlsx",
+  "Cell deconvolution/ImmuneCellAbundance_sample.xlsx",
   check.names = FALSE
 )
 
@@ -70,7 +70,7 @@ colnames(immucellai)
 # ============================================================
 
 expr <- read.xlsx(
-  "C:/Users/tahi3002/OneDrive - NIQ/Desktop/New folder/Bioinformatics/for manuscript/Cell deconvolution/BCT_Expr_Matrix_Symbol_hubgenes.xlsx",
+  "Cell deconvolution/BCT_Expr_Matrix_Symbol_hubgenes.xlsx",
   check.names = FALSE
 )
 
